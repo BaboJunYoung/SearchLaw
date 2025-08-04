@@ -8,16 +8,23 @@
     width: 100%;
     
     padding: 24px 36px;
+    
+}
+
+#container:hover {
+    /* TODO */
 }
 
 #text {
     color: #000;
     font-size: 24px;
     font-weight: 400;
+    cursor: pointer;
+    width: 100%;
 }
 
 #closeImage {
     width: 24px;
     height: 24px;
-
+    cursor: pointer;
 }

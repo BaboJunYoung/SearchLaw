@@ -13,8 +13,16 @@ export default function Home() {
         "입니다"
     ])
 
+    useEffect(() => {
+        console.log(searchedList);
+    }, [searchedList])
+
     const search = () => {
         console.log(`searching ${text}...`);
+    }
+
+    const handleInputKey = () => {
+
     }
 
     return (
@@ -29,15 +37,25 @@ export default function Home() {
                         onChange={(event) => setText(event.target.value)}
                         onFocus={() => setIsHistoryOn(true)}
                         onBlur={() => setIsHistoryOn(false)}
+                        onKeyDown={(event) => event.key === "Enter" && search()}
+                        autoFocus
                     />
                     <img
                         id={styles.searchButton}
                         src={searchImage}
                         onClick={search}
+                        
                     />
+                    
                 </div>
                 {isHistoryOn && searchedList.map((text, index) => (
-                    <SearchHistoryItem text={text} key={index}/>
+                    <SearchHistoryItem
+                        key={index}
+                        text={text}
+                        setSearchedList={setSearchedList}
+                        searchedList={searchedList}
+                        index={index}
+                    />
                 ))}
                 {/* 여기에 16px padding 있던데 일단 뺌 */}
             </div>
