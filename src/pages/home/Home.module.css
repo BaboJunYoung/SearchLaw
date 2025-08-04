@@ -17,13 +17,13 @@
     transition: ease-out 1s;
     overflow: hidden;
 
-    width: 1024px;    
+    width: var(--search-input-width);    
 }
 
 #inputContainer {
     display: flex;
     flex-direction: row;
-    margin: 24px 36px;
+    margin: var(--margin-y) var(--margin-x);
     align-items: center;
 }
 

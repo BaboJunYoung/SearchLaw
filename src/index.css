@@ -1,7 +1,11 @@
 :root {
     --main-color: #49507C;
+    --main-color-light: #88AACB;
     --gray: #D9D9D9;
-    --main-color-light: #fff;
+    
+    --search-input-width: 1024px;
+    --margin-y: 24px;
+    --margin-x: 36px;
 }
 
 body {

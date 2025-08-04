@@ -4,8 +4,8 @@
     justify-content: space-between;
     box-sizing: border-box;
     align-items: center;
-    padding: 24px 36px;
-    transition: ease 0.5s;
+    padding: var(--margin-y) var(--margin-x);
+    transition: ease-in-out 0.2s;
 
     width: 100%;
     

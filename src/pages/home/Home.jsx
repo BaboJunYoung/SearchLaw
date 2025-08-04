@@ -3,9 +3,11 @@ import testImage from "../../assets/images/test-image.JPEG"
 import { useEffect, useRef, useState } from "react";
 import searchImage from "../../assets/images/search.svg"
 import SearchHistoryItem from "./SearchHistoryItem/SearchHistoryItem";
+import { useNavigate } from "react-router";
 
 export default function Home() {
     const inputRef = useRef(null);
+    const navigate = useNavigate();
 
     const [text, setText] = useState("");
     const [isHistoryOn, setIsHistoryOn] = useState(false);
@@ -17,6 +19,7 @@ export default function Home() {
 
     const search = () => {
         // TODO
+        navigate(`/search/all/${text}`)
         console.log(`searching ${text}...`);
     }
 
