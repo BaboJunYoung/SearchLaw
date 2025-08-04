@@ -1,0 +1,13 @@
+#mainContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+#profileButton {
+    position: fixed;
+    top: 36px;
+    right: 36px;    
+    cursor: pointer;
+}

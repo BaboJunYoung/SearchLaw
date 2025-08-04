@@ -1,0 +1,37 @@
+#logo {
+    width: 284px;
+    height: 169px;
+
+    /* margin */
+    margin-top: 300px;
+}
+
+#searchContainer {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #49507C;
+    border-radius: 40px;
+    margin-top: 50px;
+
+    width: 1024px;    
+}
+
+#inputContainer {
+    display: flex;
+    flex-direction: row;
+    margin: 24px 36px;
+    align-items: center;
+}
+
+#input {
+    font-size: 24px;
+    font-weight: 600;
+    width: 100%;
+    border: 0px solid #fff;
+}
+
+#searchButton {
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+}

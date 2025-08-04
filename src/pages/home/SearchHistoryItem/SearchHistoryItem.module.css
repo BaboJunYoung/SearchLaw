@@ -1,0 +1,23 @@
+#container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-sizing: border-box;
+    align-items: center;
+
+    width: 100%;
+    
+    padding: 24px 36px;
+}
+
+#text {
+    color: #000;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+#closeImage {
+    width: 24px;
+    height: 24px;
+
+}
