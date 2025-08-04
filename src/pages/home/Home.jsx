@@ -1,10 +1,12 @@
 import styles from "./Home.module.css"
 import testImage from "../../assets/images/test-image.JPEG"
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import searchImage from "../../assets/images/search.svg"
 import SearchHistoryItem from "./SearchHistoryItem/SearchHistoryItem";
 
 export default function Home() {
+    const inputRef = useRef(null);
+
     const [text, setText] = useState("");
     const [isHistoryOn, setIsHistoryOn] = useState(false);
     const [searchedList, setSearchedList] = useState([
@@ -13,16 +15,14 @@ export default function Home() {
         "입니다"
     ])
 
-    useEffect(() => {
-        console.log(searchedList);
-    }, [searchedList])
-
     const search = () => {
+        // TODO
         console.log(`searching ${text}...`);
     }
 
-    const handleInputKey = () => {
-
+    const handleInputKey = (event) => {
+        event.key === "Enter" && search();
+        event.key === "Escape" && inputRef.current.blur();
     }
 
     return (
@@ -37,8 +37,8 @@ export default function Home() {
                         onChange={(event) => setText(event.target.value)}
                         onFocus={() => setIsHistoryOn(true)}
                         onBlur={() => setIsHistoryOn(false)}
-                        onKeyDown={(event) => event.key === "Enter" && search()}
-                        autoFocus
+                        onKeyDown={handleInputKey}
+                        ref={inputRef}
                     />
                     <img
                         id={styles.searchButton}

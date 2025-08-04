@@ -1,6 +1,8 @@
 #logo {
     width: 284px;
     height: 169px;
+    border-radius: 50px;
+
 
     /* margin */
     margin-top: 300px;
@@ -9,9 +11,11 @@
 #searchContainer {
     display: flex;
     flex-direction: column;
-    border: 2px solid #49507C;
+    border: 2px solid var(--main-color);
     border-radius: 40px;
     margin-top: 50px;
+    transition: ease-out 1s;
+    overflow: hidden;
 
     width: 1024px;    
 }
@@ -27,7 +31,7 @@
     font-size: 24px;
     font-weight: 600;
     width: 100%;
-    border: 0px solid #fff;
+    border: 0px solid white;
 }
 
 #searchButton {

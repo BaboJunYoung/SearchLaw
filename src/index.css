@@ -1,9 +1,15 @@
+:root {
+    --main-color: #49507C;
+    --gray: #D9D9D9;
+    --main-color-light: #fff;
+}
+
 body {
     margin: 0px;
 }
 
 ::placeholder {
-    color: #49507C;
+    color: var(--main-color);
     opacity: 40%;
 }
 

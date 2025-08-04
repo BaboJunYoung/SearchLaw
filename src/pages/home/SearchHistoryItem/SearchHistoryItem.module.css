@@ -4,19 +4,20 @@
     justify-content: space-between;
     box-sizing: border-box;
     align-items: center;
+    padding: 24px 36px;
+    transition: ease 0.5s;
 
     width: 100%;
-    
-    padding: 24px 36px;
     
 }
 
 #container:hover {
     /* TODO */
+    background-color: var(--gray);
 }
 
 #text {
-    color: #000;
+    color: black;
     font-size: 24px;
     font-weight: 400;
     cursor: pointer;
