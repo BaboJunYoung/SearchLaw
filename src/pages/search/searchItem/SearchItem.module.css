@@ -1,0 +1,12 @@
+#mainContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 36px 48px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 16px;
+
+    border-radius: 30px;
+    border: 2px solid #717171;
+    background-color: #FFF;
+}

@@ -2,7 +2,7 @@ import styles from "./Home.module.css"
 import testImage from "../../assets/images/test-image.JPEG"
 import { useEffect, useRef, useState } from "react";
 import searchImage from "../../assets/images/search.svg"
-import SearchHistoryItem from "./SearchHistoryItem/SearchHistoryItem";
+import SearchHistoryItem from "./searchHistoryItem/SearchHistoryItem";
 import { useNavigate } from "react-router";
 
 export default function Home() {
