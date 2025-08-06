@@ -1,6 +1,6 @@
 import { useParams } from "react-router"
 import styles from "./Search.module.css"
-import searchImage from "../../assets/images/search.svg"
+import searchImage from "/assets/images/search.svg"
 import { useEffect, useState } from "react";
 
 export default function Search() {
@@ -14,10 +14,10 @@ export default function Search() {
     }, []);
 
     return (
-        <div id={styles.mainContainer}>
-            <div id={styles.searchContainer}>
+        <div className={styles.mainContainer}>
+            <div className={styles.searchContainer}>
                 <input
-                    id={styles.searchInput}
+                    className={styles.searchInput}
                     value={text}
                     onChange={(event) => setText(event.target.value)}
                 />

@@ -1,4 +1,4 @@
-#mainContainer {
+.mainContainer {
     display: flex;
     flex-direction: column;
     margin-top: 36px;
@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-#searchContainer {
+.searchContainer {
     display: flex;
     flex-direction: row;
     padding: var(--margin-y) var(--margin-x);
@@ -14,7 +14,7 @@
     border-radius: 100px;
 }
 
-#searchInput {
+.searchInput {
     width: var(--search-input-width);
     border: 0px solid black;
     color: black;

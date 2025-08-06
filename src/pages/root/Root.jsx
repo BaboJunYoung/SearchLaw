@@ -14,7 +14,7 @@ export default function Root() {
                 id={styles.profileButton} 
                 alt="로그인"
                 src={profile}
-                onClick={()=>navigate("/login")}
+                onClick={()=>navigate("/auth/login")}
             />
             <Outlet/>
         </div>
