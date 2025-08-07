@@ -1,9 +1,8 @@
 import styles from "./Home.module.css"
 import { useEffect, useRef, useState } from "react";
-import testImage from "/assets/images/test-image.JPEG"
-import searchImage from "/assets/images/search.svg"
 import SearchHistoryItem from "./searchHistoryItem/SearchHistoryItem";
 import { useNavigate } from "react-router";
+import SearchInput from "../../components/searchInput/SearchInput.jsx"
 
 export default function Home() {
     const inputRef = useRef(null);
@@ -30,13 +29,11 @@ export default function Home() {
     return (
         <>
             <img id={styles.logo} src={testImage}/>
+
             <div id={styles.searchContainer}>
                 <div id={styles.inputContainer}>
                     <input 
                         id={styles.input}
-                        type="text" 
-                        placeholder="사례나 상황을 입력해주세요." 
-                        onChange={(event) => setText(event.target.value)}
                         onFocus={() => setIsHistoryOn(true)}
                         onBlur={() => setIsHistoryOn(false)}
                         onKeyDown={handleInputKey}

@@ -1,0 +1,6 @@
+.searchContainer {
+    display: flex;
+    flex-direction: row;
+    width: 50%; /* 1024px인데 상대적으로 바꿈 */
+    max-width: 1024; /* 이건 그냥 넣음 */
+}

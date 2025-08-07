@@ -1,6 +1,5 @@
 import { useParams } from "react-router"
 import styles from "./Search.module.css"
-import searchImage from "/assets/images/search.svg"
 import { useEffect, useState } from "react";
 
 export default function Search() {

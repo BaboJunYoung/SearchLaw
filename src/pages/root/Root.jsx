@@ -1,5 +1,5 @@
 import styles from "./Root.module.css"
-import profile from "../../assets/images/profile.svg"
+import profile from "../../assets/icons/profile.svg"
 import { Outlet, useNavigate } from "react-router";
 
 export default function Root() {
