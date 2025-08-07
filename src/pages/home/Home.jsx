@@ -1,6 +1,7 @@
 import styles from "./Home.module.css"
 import { useEffect, useRef, useState } from "react";
-import SearchHistoryItem from "./searchHistoryItem/SearchHistoryItem";
+import searchImage from "../../assets/images/search.svg"
+import SearchHistoryItem from "./SearchHistoryItem/SearchHistoryItem";
 import { useNavigate } from "react-router";
 import SearchInput from "../../components/searchInput/SearchInput.jsx"
 
