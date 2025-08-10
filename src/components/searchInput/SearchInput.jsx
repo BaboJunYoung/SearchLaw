@@ -1,23 +1,32 @@
 import styles from "./SearchInput.module.css"
-import IconButton from "../iconButton/IconButton"
-import { useState } from "react"
+import ImageButton from "../imageButton/ImageButton.jsx"
+import searchImage from "../../assets/icons/search.svg"
 
 export default function SearchInput(props) {
-    const [inputText, setInputText] = useState("");
-
+    const text = props.text;
+    const focusFunction = props.onFocus;
+    const blurFunction = props.onBlur;
+    const keyFunction = props.onKeyDown;
+    const ref = props.ref;
+    const changeFunction = props.onChange;
+    const clickFunction = props.onClick;
 
     return (
-        <div className={styles.searchContainer}>
+        <div className={styles.container}>
             <input
                 className={styles.searchInput}
-                type="text"
+                value={text}
+                onFocus={focusFunction}
+                onBlur={blurFunction}
+                onKeyDown={keyFunction}
+                ref={ref}
+                onChange={changeFunction}
                 placeholder="사례나 상황을 입력해주세요."
-                onChange={(event) => setInputText(event.target.value)}
             />
-            <IconButton
-                srcName="search.svg"
+            <ImageButton
+                src={searchImage}
                 sideLength="36px"
-                address={`/search/${inputText}`}
+                onClick={clickFunction}
             />
         </div>
     )

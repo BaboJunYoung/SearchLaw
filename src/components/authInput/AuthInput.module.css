@@ -1,0 +1,38 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+}
+
+.text {
+    margin-left: 16px;
+    
+    color: black;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.inputContainer {
+    display: flex;
+    align-items: center;
+    padding: 24px 36px;
+    border: 3px solid #49507C66;
+    border-radius: 100px;
+
+}
+
+.input {
+    background: none;
+    font-size: 24px;
+    font-weight: 600;
+    color: black;
+    border: 0px solid;
+    outline: 0px;
+    width: 100%;
+}
+
+.input::placeholder {
+    color: var(--main-color);
+    opacity: 40%;
+}

@@ -1,6 +1,24 @@
-.searchContainer {
+.container {
     display: flex;
     flex-direction: row;
-    width: 50%; /* 1024px인데 상대적으로 바꿈 */
-    max-width: 1024; /* 이건 그냥 넣음 */
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.searchInput {
+    width: 100%;
+    border: 0px solid black;
+    color: black;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.searchInput::placeholder {
+    color: var(--main-color);
+    opacity: 40%;
+}
+
+.searchInput:focus {
+    outline: none;
 }

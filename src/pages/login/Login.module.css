@@ -1,0 +1,51 @@
+.highestContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: 50px 36px;
+    gap: 80px;
+    border-radius: 40px;
+    border: 3px solid black;
+    background-color: white;
+
+
+    width: 750px;
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    width: 80%;
+}
+
+.inputContainer {
+    gap: 28px;
+    display: flex;
+    flex-direction: column;
+}
+
+.loginText {
+    color: black;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.signup {
+    color: var(--main-color-light);
+    background: none;
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
