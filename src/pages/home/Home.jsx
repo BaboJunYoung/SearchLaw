@@ -1,9 +1,10 @@
 import styles from "./Home.module.css"
 import { useEffect, useRef, useState } from "react";
-import searchImage from "../../assets/images/search.svg"
-import SearchHistoryItem from "./SearchHistoryItem/SearchHistoryItem";
+import searchImage from "../../assets/icons/search.svg"
 import { useNavigate } from "react-router";
+import logo from "../../assets/images/logo.JPEG"
 import SearchInput from "../../components/searchInput/SearchInput.jsx"
+import SearchHistoryItem from "../../components/searchHistoryItem/SearchHistoryItem.jsx";
 
 export default function Home() {
     const inputRef = useRef(null);
@@ -18,8 +19,8 @@ export default function Home() {
     ])
 
     const search = () => {
-        navigate(`/search/all/${text}`)
-        console.log(`searching ${text}...`);
+        navigate(`/search/all/${text}`);
+        console.log(`searching ${text}...`); // TODO: back-end
     }
 
     const handleInputKey = (event) => {
@@ -29,24 +30,17 @@ export default function Home() {
 
     return (
         <>
-            <img id={styles.logo} src={testImage}/>
+            <img className={styles.logo} src={logo}/>
 
-            <div id={styles.searchContainer}>
-                <div id={styles.inputContainer}>
-                    <input 
-                        id={styles.input}
+            <div className={styles.searchContainer}>
+                <div className={styles.inputContainer}>
+                    <SearchInput
+                        onChange={(event) => setText(event.target.value)}
+                        onKeyDown={handleInputKey}
                         onFocus={() => setIsHistoryOn(true)}
                         onBlur={() => setIsHistoryOn(false)}
-                        onKeyDown={handleInputKey}
-                        ref={inputRef}
-                    />
-                    <img
-                        id={styles.searchButton}
-                        src={searchImage}
                         onClick={search}
-                        
                     />
-                    
                 </div>
                 {isHistoryOn && searchedList.map((text, index) => (
                     <SearchHistoryItem
