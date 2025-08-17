@@ -3,7 +3,7 @@
   height: 100vh;
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -62,8 +62,12 @@
 
 
 @media (max-width: 700px) {
-  
   .listViewContainer {
     flex-direction: column;
   }
+
+  .screenContainer {
+    justify-content: flex-start;
+  }
+
 }
