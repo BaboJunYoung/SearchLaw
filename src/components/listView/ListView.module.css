@@ -1,0 +1,43 @@
+.contentsContainer {
+    background-color: var(--white);
+    border-radius: 15.5px;
+
+    padding: 1.9rem 1.6rem;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    gap: 0.6rem;
+}
+
+.icon {
+    width: 2rem;
+}
+
+.title {
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+.listView {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    padding: 0;
+    list-style: none;
+    gap: 1.6rem;
+}
+
+.listViewItem {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #9C9C9C;
+    
+    cursor: pointer;
+}
