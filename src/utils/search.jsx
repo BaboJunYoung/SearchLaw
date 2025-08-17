@@ -1,13 +1,15 @@
 import {getTime} from "./time"
+import { encodeUnicode } from "./base64";
 
-
-export function search(navigate, text, type) {
-    navigate(`/search?text=${text}&type=${type}`);
+export async function search(navigate, text, type) {
+    const navigateText = encodeURIComponent(text);
+    navigate(`/search?type=${type}&text=${navigateText}`);
+    
     makeData(text);
 }
 
 export function makeData(text) {
-    let datas = JSON.parse(localStorage.getItem("history"));
+    let datas = JSON.parse(localStorage.getItem("history")) ?? [];
 
     const newData = {
         text: text,

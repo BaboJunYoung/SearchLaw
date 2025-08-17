@@ -2,15 +2,15 @@ import styles from "./Home.module.css"
 import SearchInput from "../../components/searchInput/SearchInput"
 import ListView from "../../components/listView/ListView"
 
-import logoIcon from "../../assets/icons/icon.svg"
+import logoIcon from "../../assets/icons/logo.svg"
 import clockIcon from "../../assets/icons/clock.svg"
 import graphIcon from "../../assets/icons/graph.svg"
 
 export default function Home() {
 
     return (
-        <div className={styles.mainContainer}>
-            <div className={styles.contentsContainer}>
+        <div className={styles.screenContainer}>
+            <div className={styles.mainContainer}>
                 <header className={styles.header}>
                     <img className={styles.icon} src={logoIcon}/>
                     <div className={styles.headerText}>나를 위한 딱 맞는 판례 데이터 분석</div>

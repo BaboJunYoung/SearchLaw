@@ -6,7 +6,7 @@
 
 :root {
     --main-color: #4175f9;
-    --background-color: #FAFBFF;
+    --background-color: #FAFBFF; /* FAFBFF */
     --black: #3F414A;
 
     --main-color-rgb: 65, 117, 249;
@@ -24,6 +24,8 @@ body {
 * { 
     font-family: var(--font-name);
     letter-spacing: -0.5px;
+
+    box-sizing: border-box;
 
     font-size: 10px;
 }
@@ -43,5 +45,11 @@ body {
 @media (max-width: 1000px) {
     * {
         font-size: 10px;
+    }
+}
+
+@media (max-width: 300px) {
+    * {
+        font-size: 7px;
     }
 }

@@ -1,0 +1,96 @@
+.screenContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100vw;
+}
+
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: 60%;
+    margin-top: 20px;
+}
+.logo {
+    cursor: pointer;
+    width: 5.2rem;
+}
+
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 132px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+    /* margin-left: 20px; */
+    /* margin-right: 20px; */
+
+    width: 100%;
+    max-width: 65rem;
+    gap: 3rem;
+}
+
+.contentsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    
+    gap: 2rem;
+}
+
+.categoryList {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 0.7rem;
+}
+
+.categoryButton {
+    padding: 0.8rem 1.8rem;
+
+    border-radius: 5rem;
+    border: 0.75px solid #e4e4e4;
+
+    background: none;
+
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #828282;
+}
+.categoryButtonPushed {
+    background-color: var(--main-color);
+
+    font-weight: 600;
+    color: white;
+
+    border: none;
+}
+
+
+.resultAbout {
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: black
+}
+
+.searchListView {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+}

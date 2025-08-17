@@ -1,1 +1,1 @@
-export const apiBaseUrl = "https://lawinfo-api.sunrin.kr";
+export const apiBaseUrl = "https://panda-api.sunrin.kr";

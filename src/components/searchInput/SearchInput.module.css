@@ -16,6 +16,7 @@
 
 .searchInput {
     width: 100%;
+    background: none;
     
     font-size: 1.6rem;
     font-weight: 400;
