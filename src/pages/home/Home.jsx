@@ -22,14 +22,14 @@ export default function Home() {
                             className={styles.history}
                             icon={clockIcon}
                             title="최근 검색어"
-                            widthWeight="0"
+                            widthWeight="1"
                         />
-                        <ListView
+                        {/* <ListView
                             className={styles.popular}
                             icon={graphIcon}
                             title="지금 사람들이 많이 찾고 있어요"
                             widthWeight="1"
-                        />
+                        /> */}
                     </div>
                 </footer>
             </div>

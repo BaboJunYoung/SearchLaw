@@ -8,9 +8,9 @@
     box-sizing: border-box;
 }
 .containerBorder {
-    padding: 1.7rem 2.2rem;
+    padding: 1.5rem 2.2rem;
     border-radius: 100px;
-    background-color: white;
+    background-color: var(--white);
 
 }
 
@@ -21,6 +21,8 @@
     font-size: 1.6rem;
     font-weight: 400;
     border: none;
+
+    cursor: text;
 }
 .searchInput::placeholder {
     color: rgba(var(--black-rgb), 0.45);

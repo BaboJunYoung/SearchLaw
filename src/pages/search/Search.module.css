@@ -70,12 +70,14 @@
     font-size: 1.2rem;
     font-weight: 400;
     color: #828282;
+
+    cursor: pointer;
 }
 .categoryButtonPushed {
     background-color: var(--main-color);
 
     font-weight: 600;
-    color: white;
+    color: var(--white);
 
     border: none;
 }

@@ -1,29 +1,19 @@
+import { useNavigate } from "react-router";
 import styles from "./ListView.module.css"
 
+import { search } from "../../utils/search";
+
 export default function ListView(props) {
-    const defaultHistory = [
-        {
-            text: "하나",
-            time: "2009-01-15T040501",
-        },
-        {
-            text: "둘",
-            time: "2010-01-15T000000",
-        },
-        {
-            text: "셋",
-            time: "2011-01-15T000000",
-        },
-        {
-            text: "이만오천칠백팔십칠억구천팔백이십삼만이천구십삼",
-            time: "2023-01-15T000000",
-        }
-    ]
+    const navigate = useNavigate();
 
     const icon = props.icon;
     const title = props.title;
     const widthWeight = props.widthWeight;
-    const history = JSON.parse(localStorage.getItem("history")) ?? defaultHistory; // 검색기록
+    const history = JSON.parse(localStorage.getItem("history")) ?? ["아직 없네요ㅠㅅㅠ"]; // 검색기록
+
+    const handleClick = (text) => {
+        search(navigate, text, "all");
+    }
 
     return (
         <div className={styles.contentsContainer} style={{flexGrow: widthWeight}}>
@@ -33,7 +23,11 @@ export default function ListView(props) {
             </header>
             <ul className={styles.listView}>
                 {history.map(item => (
-                    <li className={styles.listViewItem} key={`${item.time}-${item.text}`}>
+                    <li
+                        className={styles.listViewItem}
+                        key={`${item.time}-${item.text}`}
+                        onClick={() => handleClick(item.text)}
+                    >
                         {item.text}
                     </li>
                 ))}
