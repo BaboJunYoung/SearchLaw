@@ -1,34 +1,55 @@
+@import url(./assets/fonts/pretendard.css);
 @font-face {
-    font-family: "font";
-    src: url("/fonts/fontRegular.woff") format("woff")
-         url("/fonts/fontRegular.woff2") format("woff2");
-    font-weight: 400;
-    font-style: normal;
-}
-@font-face {
-    font-family: "font";
-    src: url("/fonts/fontSemiBold.woff") format("woff")
-         url("/fonts/fontSemiBold.woff2") format("woff2");
-    font-weight: 600;
-    font-style: normal;
-}
-@font-face {
-    font-family: "font";
-    src: url("/fonts/fontBold.woff") format("woff")
-         url("/fonts/fontBold.woff2") format("woff2");
-    font-weight: 700;
-    font-style: normal;
+    font-family: "testFont";
+    src: url(./assets/fonts/testFont.ttf);
 }
 
 :root {
-    --main-color: #49507C;
-    --main-color-light: #88AACB;
-    --gray: #D9D9D9;
+    --main-color: #4175f9;
+    --background-color: #FAFBFF; /* FAFBFF */
+    --black: #3F414A;
 
-    --margin-x: 36px;
-    --margin-y: 24px;
+    --main-color-rgb: 65, 117, 249;
+    --background-color-rgb: 250, 250, 250;
+    --black-rgb: 63, 65, 74;
+
+    --font-name: "Pretendard";
 }
 
 body {
+    background-color: var(--background-color);
     margin: 0px;
+}
+
+* { 
+    font-family: var(--font-name);
+    letter-spacing: -0.5px;
+
+    box-sizing: border-box;
+
+    font-size: 10px;
+}
+
+@media (min-width: 2000px) {
+    * {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 2000px) {
+    * {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 1000px) {
+    * {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 300px) {
+    * {
+        font-size: 7px;
+    }
 }

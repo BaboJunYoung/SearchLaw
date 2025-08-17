@@ -1,92 +1,159 @@
-import { useNavigate, useParams } from "react-router"
 import styles from "./Search.module.css"
-import SearchInput from "../../components/searchInput/SearchInput.jsx"
-import SearchItem from "../../components/searchItem/SearchItem.jsx"
-import { useEffect, useRef, useState } from "react";
 
-export default function Search() {
+import SearchInput from "../../components/searchInput/SearchInput"
+import SearchListViewItem from "../../components/searchListViewItem/SearchListViewItem.jsx"
+
+import logoIcon from "../../assets/icons/logo.svg"
+import {  useState } from "react";
+import { apiBaseUrl } from '../../api/api';
+import { decodeUnicode } from "../../utils/base64.js"
+import { search } from "../../utils/search.jsx"
+import axios from "axios"
+import { useSearchParams } from 'react-router';
+import { useNavigate } from 'react-router';
+
+export default function Search(props) {
     const navigate = useNavigate();
-    const inputRef = useRef(null);
-    const params = useParams();
-    const [category, setCategory] = useState(params.category);
-    const [text, setText] = useState(params.text);
 
-    const [searchContentList, setSearchContentList] = useState([]);
-
-    useEffect(() => { // 이거 진짜 오로지 테스트용임.
-        setSearchContentList([
-            {
-                "title": "위계공무집행방해·경범죄처벌법위반·응급의료에관한법률위반·업무방해·공무집행방해·모욕",
-                "date": "3152. 10. 27.",
-                "type": "형사 경찰청 소방청 아무튼 대충 긴 글",
-                "content": "거짓신고로 인한 경범죄 처벌법 위반죄와 위계에 의한 공무집행방해죄의 성립 요건 및 보호법익 / 거짓신고 행위가 원인이 되어 상대방인 공무원이 범죄가 발생한 것으로 오인함으로 인하여 공무원이 그러한 사정을 알았더라면 하지 않았을 대응조치를 취하기에 이른 경우, 위계에 의한 공무집행방해죄가 성립하는...",
-            },
-            {
-                "title": "위계공무집행방해·경범죄처벌법위반·응급의료에관한법률위반·업무방해·공무집행방해·모욕",
-                "date": "3152. 10. 27.",
-                "type": "형사 경찰청 소방청 아무튼 대충 긴 글",
-                "content": "거짓신고로 인한 경범죄 처벌법 위반죄와 위계에 의한 공무집행방해죄의 성립 요건 및 보호법익 / 거짓신고 행위가 원인이 되어 상대방인 공무원이 범죄가 발생한 것으로 오인함으로 인하여 공무원이 그러한 사정을 알았더라면 하지 않았을 대응조치를 취하기에 이른 경우, 위계에 의한 공무집행방해죄가 성립하는...",
-            },
-            {
-                "title": "위계공무집행방해·경범죄처벌법위반·응급의료에관한법률위반·업무방해·공무집행방해·모욕",
-                "date": "3152. 10. 27.",
-                "type": "형사 경찰청 소방청 아무튼 대충 긴 글",
-                "content": "거짓신고로 인한 경범죄 처벌법 위반죄와 위계에 의한 공무집행방해죄의 성립 요건 및 보호법익 / 거짓신고 행위가 원인이 되어 상대방인 공무원이 범죄가 발생한 것으로 오인함으로 인하여 공무원이 그러한 사정을 알았더라면 하지 않았을 대응조치를 취하기에 이른 경우, 위계에 의한 공무집행방해죄가 성립하는...",
-            },
-        ])
-    }, [])
-
-    const search = () => {
-        navigate(`/search/${category}/${text}`);
-    }
-
-    const handleInputKey = (event) => {
-        event.key === "Enter" && search();
-        event.key === "Escape" && inputRef.current.blur();
-    }
+    const [searchParams] = useSearchParams();
+    const [text, setText] = useState(searchParams.get("text"));
+    const [type, setType] = useState(searchParams.get("type"));
+    const [searchList, setSearchList] = useState([]);
     
-    const switchCategory = (category) => {
-        navigate(`/search/${category}/${params.text}`);
-        setCategory(category);
-        setText(params.text); // TODO: 이거 상의해야될듯
+
+    const handleCategoryClick = (category) => {
+        search(navigate, text, category);
+        setType(category)
     }
+
+    // useEffect(() => {
+    //     const getData = async () => {
+    //         const postResponse = await axios.post(`${apiBaseUrl}/legal/process`, {
+    //             "story": text
+    //         });
+    //         let lst = postResponse.data["law"];
+
+    //         for (let elementIndex = 0; elementIndex < lst.length; elementIndex++) {
+    //             let element = lst[elementIndex]
+    //             const getResponse = await axios.get(`${apiBaseUrl}/legal/detail/${element["법령ID"]}`)
+    //             lst[elementIndex]["소관부처이름"] = getResponse.data["소관부처이름"]
+    //             lst[elementIndex]["1조"] = getResponse.data["조문"][0]["조문내용"]
+    //         }
+    //         console.log(lst)
+    //     };
+    //     getData()
+    // }, [])
 
     return (
-        <div className={styles.mainContainer}>
-            <div className={styles.searchContainer}>
-                <SearchInput
-                    onChange={(event) => setText(event.target.value)}
-                    text={text}
-                    onKeyDown={handleInputKey}
-                    onClick={search}
+        <div className={styles.screenContainer}>
+            <header className={styles.header}>
+                <img 
+                    className={styles.logo}
+                    src={logoIcon}
+                    onClick={() => navigate("/")}
                 />
-            </div>
-            <div className={styles.categoryContainer}>
-                <button
-                    className={`${styles.category} ${category === "all" && styles.selected}`}
-                    onClick={() => switchCategory("all")}
-                >전체</button>
-
-                <button
-                    className={`${styles.category} ${category === "law" && styles.selected}`}
-                    onClick={() => switchCategory("law")}
-                >법령</button>
-
-                <button
-                    className={`${styles.category} ${category === "case" && styles.selected}`}
-                    onClick={() => switchCategory("case")}
-                >판례</button>
-            </div>
-            <div className={styles.contentContainer}>
-                {searchContentList.map((element, index) => (
-                    <SearchItem
-                        key={index}
-                        title={element.title}
-                        date={element.date}
-                        type={element.type}
-                        content={element.content}
-                    />
-                ))}
+            </header>
+            <div className={styles.mainContainer}>
+                <SearchInput
+                    text={text}
+                    searchType={type}
+                    isBorder={false}
+                    setText={setText}
+                    setSearchType={setType}
+                />
+                <div className={styles.contentsContainer}>
+                    <div className={styles.categoryList}>
+                        <button 
+                            className={`${styles.categoryButton} ${type === "all" && styles.categoryButtonPushed}`}
+                            onClick={() => handleCategoryClick("all")}
+                        >전체</button>
+                        <button 
+                            className={`${styles.categoryButton} ${type === "law" && styles.categoryButtonPushed}`}
+                            onClick={() => handleCategoryClick("law")}
+                        >법령</button>
+                        <button 
+                            className={`${styles.categoryButton} ${type === "case" && styles.categoryButtonPushed}`}
+                            onClick={() => handleCategoryClick("case")}
+                        >판례</button>
+                    </div>
+                    
+                    <div className={styles.resultAbout}>
+                        {searchList.length === 0 ? `${text}에 대한 검색결과가 없습니다.` : `${text}에 대한 검색결과입니다.`}
+                    </div>
+                    
+                    <div className={styles.searchListView}>
+                        <SearchListViewItem
+                            id="010719"
+                            title="10ㆍ27법난 피해자의 명예회복 등에 관한 법률"
+                            date="20230808"
+                            info="문화체육관광부"
+                            content="제1조(목적) 이 법은 10ㆍ27법난과 관련하여 피해를 입은 사람과 불교계의 명예를 회복시켜줌으로써 인권신장과 국민화합에 이바지함을 목적으로 한다. <개정 2023.8.8>"
+                        />
+                        <SearchListViewItem
+                            id="010719"
+                            title="10ㆍ27법난 피해자의 명예회복 등에 관한 법률"
+                            date="20230808"
+                            info="문화체육관광부"
+                            content="제1조(목적) 이 법은 10ㆍ27법난과 관련하여 피해를 입은 사람과 불교계의 명예를 회복시켜줌으로써 인권신장과 국민화합에 이바지함을 목적으로 한다. <개정 2023.8.8>"
+                        />
+                        <SearchListViewItem
+                            id="010719"
+                            title="10ㆍ27법난 피해자의 명예회복 등에 관한 법률"
+                            date="20230808"
+                            info="문화체육관광부"
+                            content="제1조(목적) 이 법은 10ㆍ27법난과 관련하여 피해를 입은 사람과 불교계의 명예를 회복시켜줌으로써 인권신장과 국민화합에 이바지함을 목적으로 한다. <개정 2023.8.8>"
+                        />
+                        <SearchListViewItem
+                            id="010719"
+                            title="10ㆍ27법난 피해자의 명예회복 등에 관한 법률"
+                            date="20230808"
+                            info="문화체육관광부"
+                            content="제1조(목적) 이 법은 10ㆍ27법난과 관련하여 피해를 입은 사람과 불교계의 명예를 회복시켜줌으로써 인권신장과 국민화합에 이바지함을 목적으로 한다. <개정 2023.8.8>"
+                        />
+                        <SearchListViewItem
+                            id="010719"
+                            title="10ㆍ27법난 피해자의 명예회복 등에 관한 법률"
+                            date="20230808"
+                            info="문화체육관광부"
+                            content="제1조(목적) 이 법은 10ㆍ27법난과 관련하여 피해를 입은 사람과 불교계의 명예를 회복시켜줌으로써 인권신장과 국민화합에 이바지함을 목적으로 한다. <개정 2023.8.8>"
+                        />
+                        <SearchListViewItem
+                            id="010719"
+                            title="10ㆍ27법난 피해자의 명예회복 등에 관한 법률"
+                            date="20230808"
+                            info="문화체육관광부"
+                            content="제1조(목적) 이 법은 10ㆍ27법난과 관련하여 피해를 입은 사람과 불교계의 명예를 회복시켜줌으로써 인권신장과 국민화합에 이바지함을 목적으로 한다. <개정 2023.8.8>"
+                        />
+                        <SearchListViewItem
+                            id="010719"
+                            title="10ㆍ27법난 피해자의 명예회복 등에 관한 법률"
+                            date="20230808"
+                            info="문화체육관광부"
+                            content="제1조(목적) 이 법은 10ㆍ27법난과 관련하여 피해를 입은 사람과 불교계의 명예를 회복시켜줌으로써 인권신장과 국민화합에 이바지함을 목적으로 한다. <개정 2023.8.8>"
+                        />
+                        <SearchListViewItem
+                            id="010719"
+                            title="10ㆍ27법난 피해자의 명예회복 등에 관한 법률"
+                            date="20230808"
+                            info="문화체육관광부"
+                            content="제1조(목적) 이 법은 10ㆍ27법난과 관련하여 피해를 입은 사람과 불교계의 명예를 회복시켜줌으로써 인권신장과 국민화합에 이바지함을 목적으로 한다. <개정 2023.8.8>"
+                        />
+                        <SearchListViewItem
+                            id="010719"
+                            title="10ㆍ27법난 피해자의 명예회복 등에 관한 법률"
+                            date="  "
+                            info="문화체육관광부"
+                            content="제1조(목적) 이 법은 10ㆍ27법난과 관련하여 피해를 입은 사람과 불교계의 명예를 회복시켜줌으로써 인권신장과 국민화합에 이바지함을 목적으로 한다. <개정 2023.8.8>"
+                        />
+                        <SearchListViewItem
+                            id="010719"
+                            title="10ㆍ27법난 피해자의 명예회복 등에 관한 법률"
+                            date="20230808"
+                            info="문화체육관광부"
+                            content="제1조(목적) 이 법은 10ㆍ27법난과 관련하여 피해를 입은 사람과 불교계의 명예를 회복시켜줌으로써 인권신장과 국민화합에 이바지함을 목적으로 한다. <개정 2023.8.8>"
+                        />
+                    </div>
+                </div>
             </div>
         </div>
     )
