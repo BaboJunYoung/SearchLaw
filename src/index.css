@@ -6,8 +6,9 @@
 
 :root {
     --main-color: #4175f9;
-    --background-color: #FAFBFF; /* FAFBFF */
+    --background-color: #e7e8ef; /* FAFBFF */
     --black: #3F414A;
+    --white: #fafafa;
 
     --main-color-rgb: 65, 117, 249;
     --background-color-rgb: 250, 250, 250;
@@ -28,11 +29,13 @@ body {
     box-sizing: border-box;
 
     font-size: 10px;
+
+    cursor: default;
 }
 
 @media (min-width: 2000px) {
     * {
-        font-size: 20px;
+        font-size: 15px;
     }
 }
 
