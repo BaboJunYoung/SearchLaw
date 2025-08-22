@@ -4,6 +4,8 @@
     justify-content: space-between;
     align-items: center;
 
+    background-color: var(--background-color);
+
     width: 100vw;
 }
 
@@ -37,7 +39,7 @@
     /* margin-right: 20px; */
 
     width: 100%;
-    max-width: 65rem;
+    max-width: 70rem;
     gap: 3rem;
 }
 
@@ -46,6 +48,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+
+    background-color: var(--white);
+    padding: 2rem 3rem;
+
+    border-radius: 50px;
     
     gap: 2rem;
 }

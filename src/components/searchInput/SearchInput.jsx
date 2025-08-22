@@ -11,6 +11,7 @@ export default function SearchInput(props) {
     
     const sendText = props.setText ?? setText;
     const sendSearchType = props.setSearchType ?? setSearchType;
+    
 
     useEffect(() => {
         props.text && setText(props.text);

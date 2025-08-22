@@ -6,7 +6,7 @@
 
 :root {
     --main-color: #4175f9;
-    --background-color: #e7e8ef; /* FAFBFF */
+    --background-color: #f2f2f2; /* e7e8ef FAFBFF */
     --black: #3F414A;
     --white: #fafafa;
 
@@ -27,7 +27,7 @@ body {
     letter-spacing: -0.5px;
 
     box-sizing: border-box;
-
+    
     font-size: 10px;
 
     cursor: default;
@@ -59,6 +59,6 @@ body {
 
 @media (max-width: 700px) {
     * {
-        font-size: 8px;
+        font-size: 10px;
     }
 }

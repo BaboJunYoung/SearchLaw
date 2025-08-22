@@ -20,3 +20,5 @@ export function makeDate(date) {
 
     return `${year}. ${month}. ${day}.`
 }
+
+export const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));

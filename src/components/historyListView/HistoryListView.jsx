@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router";
-import styles from "./ListView.module.css"
+import styles from "./HistoryListView.module.css"
 
 import { search } from "../../utils/search";
 
-export default function ListView(props) {
+export default function HistoryListView(props) {
     const navigate = useNavigate();
 
     const icon = props.icon;

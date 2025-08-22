@@ -1,0 +1,100 @@
+.screenContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+}
+
+
+/* 사이드바 */
+.sideBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+ 
+    
+    
+    position: fixed;
+    top: 15rem;
+    left: 3vw;
+
+    max-height: 50vh;
+    overflow-y: scroll;
+
+    gap: 15px;
+}
+
+.sideBarItem {
+    font-size: 1.6rem;
+    font-weight: 400;
+    
+    color: #2B394D99;
+}
+.lookingSideBarItem {
+    font-weight: 500;
+    
+    color: #2B394DE5;
+}
+
+
+/* 메인 중앙 */
+
+.contentView {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    max-width: 70vw;
+    margin-top: 15rem;
+
+    gap: 2rem;
+}
+
+.title {
+    color: black;
+    font-size: 3.4rem;
+    font-weight: 500;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    gap: 1.6rem;
+}
+.date, .info {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #00000080;
+}
+
+.lawContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    margin-top: 7rem;
+
+    gap: 4rem;
+}
+
+@media (max-width: 500px) {
+    .sideBar {
+        display: none;
+    }
+
+    .contentView {
+        margin-top: 5rem;
+    }
+
+    .lawContainer {
+        margin-top: 3rem;
+    }
+}

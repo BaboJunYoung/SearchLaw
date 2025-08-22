@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router'
 
 import Home from "./pages/home/Home.jsx"
 import Search from "./pages/search/Search.jsx"
+import Detail from "./pages/detail/Detail.jsx"
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
     children: [
       {index: true, element: <Home/>},
       {path: "/search", element: <Search/>},
+      {path: "/detail/:lawId", element: <Detail/>},
     ]
   }
 ],
@@ -21,7 +23,5 @@ const router = createBrowserRouter([
 });
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <RouterProvider router={router}/>
-  </StrictMode>
+  <RouterProvider router={router}/>
 )

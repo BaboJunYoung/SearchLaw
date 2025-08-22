@@ -4,13 +4,14 @@ import SearchInput from "../../components/searchInput/SearchInput"
 import SearchListViewItem from "../../components/searchListViewItem/SearchListViewItem.jsx"
 
 import logoIcon from "../../assets/icons/logo.svg"
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 import { apiBaseUrl } from '../../api/api';
-import { decodeUnicode } from "../../utils/base64.js"
-import { search } from "../../utils/search.jsx"
+import { getLawData, search } from "../../utils/search.jsx"
+import { makeDate } from "../../utils/time.js";
 import axios from "axios"
 import { useSearchParams } from 'react-router';
 import { useNavigate } from 'react-router';
+import { getRequestWithRetry } from "../../utils/request.jsx";
 
 export default function Search(props) {
     const navigate = useNavigate();
@@ -18,31 +19,69 @@ export default function Search(props) {
     const [searchParams] = useSearchParams();
     const [text, setText] = useState(searchParams.get("text"));
     const [type, setType] = useState(searchParams.get("type"));
-    const [searchList, setSearchList] = useState([]);
-    
+    const [searchList, setSearchList] = useState({
+        law: [],
+        case: []
+    });
+    /*
+    구조
+    searchList = {
+        "law" : [
+            {
+                "lawId": 어쩌구,
+                "법령명_한글": 어쩌구,
+                "시행일자": 어쩌구,
+                "소관부처이름": 소관부처 어쩌구,
+                "조문": [ {...}, {...}, ... ]
+            },
+            {
+                "lawId": 어쩌구,
+                "법령명_한글": 어쩌구,
+                "시행일자": 어쩌구,
+                "소관부처이름": 소관부처 어쩌구,
+                "조문": [ {...}, {...}, ... ]
+            }, ...
+        ],
+        "case": [
+            // data ...
+        ]
+    }
+    */
+
 
     const handleCategoryClick = (category) => {
         search(navigate, text, category);
         setType(category)
     }
 
-    // useEffect(() => {
-    //     const getData = async () => {
-    //         const postResponse = await axios.post(`${apiBaseUrl}/legal/process`, {
-    //             "story": text
-    //         });
-    //         let lst = postResponse.data["law"];
+    const search = () => {
+        
+    }
 
-    //         for (let elementIndex = 0; elementIndex < lst.length; elementIndex++) {
-    //             let element = lst[elementIndex]
-    //             const getResponse = await axios.get(`${apiBaseUrl}/legal/detail/${element["법령ID"]}`)
-    //             lst[elementIndex]["소관부처이름"] = getResponse.data["소관부처이름"]
-    //             lst[elementIndex]["1조"] = getResponse.data["조문"][0]["조문내용"]
-    //         }
-    //         console.log(lst)
-    //     };
-    //     getData()
-    // }, [])
+    useEffect(() => {
+        setSearchList({
+            law: [],
+            case: []
+        });
+
+        const getData = async () => {
+            if ((type === "all" || type === "law")) {
+                const data = await getLawData(text);
+                console.log(data)
+                setSearchList(preventState => (
+                    {
+                        ...preventState,
+                        law: data
+                    }
+                ))
+            }
+
+            if (type === "all" || type === "case") {
+                
+            }
+        }
+        getData()
+    }, [text])
 
     return (
         <div className={styles.screenContainer}>
@@ -57,7 +96,7 @@ export default function Search(props) {
                 <SearchInput
                     text={text}
                     searchType={type}
-                    isBorder={false}
+                    isBorder={true}
                     setText={setText}
                     setSearchType={setType}
                 />
@@ -78,80 +117,20 @@ export default function Search(props) {
                     </div>
                     
                     <div className={styles.resultAbout}>
-                        {searchList.length === 0 ? `${text}에 대한 검색결과가 없습니다.` : `${text}에 대한 검색결과입니다.`}
+                        {searchList.law.length === 0 && searchList.case.length === 0 ? `"${text}"에 대해 검색 중입니다...` : `"${text}"에 대한 검색 결과입니다.`}
                     </div>
                     
                     <div className={styles.searchListView}>
-                        <SearchListViewItem
-                            id="010719"
-                            title="10ㆍ27법난 피해자의 명예회복 등에 관한 법률"
-                            date="20230808"
-                            info="문화체육관광부"
-                            content="제1조(목적) 이 법은 10ㆍ27법난과 관련하여 피해를 입은 사람과 불교계의 명예를 회복시켜줌으로써 인권신장과 국민화합에 이바지함을 목적으로 한다. <개정 2023.8.8>"
-                        />
-                        <SearchListViewItem
-                            id="010719"
-                            title="10ㆍ27법난 피해자의 명예회복 등에 관한 법률"
-                            date="20230808"
-                            info="문화체육관광부"
-                            content="제1조(목적) 이 법은 10ㆍ27법난과 관련하여 피해를 입은 사람과 불교계의 명예를 회복시켜줌으로써 인권신장과 국민화합에 이바지함을 목적으로 한다. <개정 2023.8.8>"
-                        />
-                        <SearchListViewItem
-                            id="010719"
-                            title="10ㆍ27법난 피해자의 명예회복 등에 관한 법률"
-                            date="20230808"
-                            info="문화체육관광부"
-                            content="제1조(목적) 이 법은 10ㆍ27법난과 관련하여 피해를 입은 사람과 불교계의 명예를 회복시켜줌으로써 인권신장과 국민화합에 이바지함을 목적으로 한다. <개정 2023.8.8>"
-                        />
-                        <SearchListViewItem
-                            id="010719"
-                            title="10ㆍ27법난 피해자의 명예회복 등에 관한 법률"
-                            date="20230808"
-                            info="문화체육관광부"
-                            content="제1조(목적) 이 법은 10ㆍ27법난과 관련하여 피해를 입은 사람과 불교계의 명예를 회복시켜줌으로써 인권신장과 국민화합에 이바지함을 목적으로 한다. <개정 2023.8.8>"
-                        />
-                        <SearchListViewItem
-                            id="010719"
-                            title="10ㆍ27법난 피해자의 명예회복 등에 관한 법률"
-                            date="20230808"
-                            info="문화체육관광부"
-                            content="제1조(목적) 이 법은 10ㆍ27법난과 관련하여 피해를 입은 사람과 불교계의 명예를 회복시켜줌으로써 인권신장과 국민화합에 이바지함을 목적으로 한다. <개정 2023.8.8>"
-                        />
-                        <SearchListViewItem
-                            id="010719"
-                            title="10ㆍ27법난 피해자의 명예회복 등에 관한 법률"
-                            date="20230808"
-                            info="문화체육관광부"
-                            content="제1조(목적) 이 법은 10ㆍ27법난과 관련하여 피해를 입은 사람과 불교계의 명예를 회복시켜줌으로써 인권신장과 국민화합에 이바지함을 목적으로 한다. <개정 2023.8.8>"
-                        />
-                        <SearchListViewItem
-                            id="010719"
-                            title="10ㆍ27법난 피해자의 명예회복 등에 관한 법률"
-                            date="20230808"
-                            info="문화체육관광부"
-                            content="제1조(목적) 이 법은 10ㆍ27법난과 관련하여 피해를 입은 사람과 불교계의 명예를 회복시켜줌으로써 인권신장과 국민화합에 이바지함을 목적으로 한다. <개정 2023.8.8>"
-                        />
-                        <SearchListViewItem
-                            id="010719"
-                            title="10ㆍ27법난 피해자의 명예회복 등에 관한 법률"
-                            date="20230808"
-                            info="문화체육관광부"
-                            content="제1조(목적) 이 법은 10ㆍ27법난과 관련하여 피해를 입은 사람과 불교계의 명예를 회복시켜줌으로써 인권신장과 국민화합에 이바지함을 목적으로 한다. <개정 2023.8.8>"
-                        />
-                        <SearchListViewItem
-                            id="010719"
-                            title="10ㆍ27법난 피해자의 명예회복 등에 관한 법률"
-                            date="  "
-                            info="문화체육관광부"
-                            content="제1조(목적) 이 법은 10ㆍ27법난과 관련하여 피해를 입은 사람과 불교계의 명예를 회복시켜줌으로써 인권신장과 국민화합에 이바지함을 목적으로 한다. <개정 2023.8.8>"
-                        />
-                        <SearchListViewItem
-                            id="010719"
-                            title="10ㆍ27법난 피해자의 명예회복 등에 관한 법률"
-                            date="20230808"
-                            info="문화체육관광부"
-                            content="제1조(목적) 이 법은 10ㆍ27법난과 관련하여 피해를 입은 사람과 불교계의 명예를 회복시켜줌으로써 인권신장과 국민화합에 이바지함을 목적으로 한다. <개정 2023.8.8>"
-                        />
+                        {(type == "all" || type == "law") && searchList.law.length !== 0 && searchList.law.map(element => (
+                            <SearchListViewItem
+                                key={element.lawId}
+                                id={element.lawId}
+                                title={element["법령명_한글"]}
+                                date={element["시행일자"]}
+                                info={element["소관부처이름"]}
+                                content={element["조문"][0]["조문내용"]}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>

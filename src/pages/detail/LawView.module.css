@@ -1,0 +1,32 @@
+.lawViewContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 1.8rem;
+
+    width: 100%;
+}
+
+
+.title {
+    color: #49507C;
+
+    font-weight: 400;
+    font-size: 2rem;
+}
+
+.content {
+    color: black;
+
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+.horizon {
+    width: 100%;
+    height: 1px;
+
+    background-color: cornflowerblue;
+}

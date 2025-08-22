@@ -1,10 +1,11 @@
 import styles from "./Home.module.css"
 import SearchInput from "../../components/searchInput/SearchInput"
-import ListView from "../../components/listView/ListView"
+import ListView from "../../components/historyListView/HistoryListView.jsx"
 
 import logoIcon from "../../assets/icons/logo.svg"
 import clockIcon from "../../assets/icons/clock.svg"
 import graphIcon from "../../assets/icons/graph.svg"
+import HistoryListView from '../../components/historyListView/HistoryListView';
 
 export default function Home() {
 
