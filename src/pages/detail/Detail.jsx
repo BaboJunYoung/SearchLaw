@@ -1,7 +1,7 @@
 import { useParams } from "react-router"
 import styles from "./Detail.module.css"
 import lawViewStyles from "./LawView.module.css"
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { makeDate } from "../../utils/time";
 import { apiBaseUrl } from '../../api/api';
 import axios from "axios";
